@@ -57,20 +57,28 @@ Mat getDesktopMat()
 int main(int argc, char** argv)
 {
 
-	Mat image = getDesktopMat();
-
-
-
+	Mat image;
 	namedWindow("Display window", WINDOW_NORMAL); // Create a window for display.
-	if (image.empty())
+	while (true)
 	{
-		cout << "no image to display" << endl;
+		image = getDesktopMat();
+		
+		if (image.empty())
+		{
+			cout << "no image to display" << endl;
+		}
+		else
+		{
+			imshow("Display window", image); // Show our image inside it.
+		}
+		int key = waitKey(5);
+
+		if (key == 27)//press esc to break loop
+		{
+			break;
+		}
+
 	}
-	else
-	{
-		imshow("Display window", image); // Show our image inside it.
-	}
-	
-	waitKey(0); // Wait for a keystroke in the window
+
 	return 0;
 }
